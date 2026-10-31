@@ -1,0 +1,19 @@
+{
+  "name": "estudaia-devops-ia",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Assistente de estudos com Gemini para o desafio DevOps e IA",
+  "type": "module",
+  "author": "Vitor Gallucci",
+  "engines": {
+    "node": ">=22 <23",
+    "npm": ">=10"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "check:structure": "node scripts/check-structure.js"
+  }
+}

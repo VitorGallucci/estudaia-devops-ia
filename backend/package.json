@@ -1,0 +1,7 @@
+{
+  "name": "@estudaia/backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "API e integração Gemini do EstudaIA; implementação na etapa 2"
+}

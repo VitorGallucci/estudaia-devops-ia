@@ -4,7 +4,7 @@
 
 Construir um assistente em português para resumir textos e esclarecer dúvidas, com código original e explicável pelo autor. A entrega exige repositório público com `/backend` e `/frontend`, dois endpoints, IA real em produção, cobertura mínima de 70%, pipeline verde, documentação e vídeo de 5 a 8 minutos.
 
-Repositório previsto: `VitorGallucci/estudaia-devops-ia`, branch `main`. A criação remota ainda precisa ser confirmada; a presença deste documento não significa que o repositório já foi publicado.
+Repositório público: [VitorGallucci/estudaia-devops-ia](https://github.com/VitorGallucci/estudaia-devops-ia), branch `main`.
 
 ## Arquitetura acordada
 

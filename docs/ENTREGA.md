@@ -4,7 +4,7 @@ Prazo: **07/11/2026, 23h59 — horário de Brasília**.
 
 ## Links
 
-- Repositório público: pendente de publicação.
+- Repositório público: [VitorGallucci/estudaia-devops-ia](https://github.com/VitorGallucci/estudaia-devops-ia).
 - Aplicação em produção: pendente da etapa 5.
 - Vídeo de demonstração: pendente da gravação pelo autor.
 

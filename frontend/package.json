@@ -1,0 +1,7 @@
+{
+  "name": "@estudaia/frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Interface HTML, CSS e JavaScript do EstudaIA; implementação na etapa 3"
+}

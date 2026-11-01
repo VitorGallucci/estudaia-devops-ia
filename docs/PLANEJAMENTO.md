@@ -12,7 +12,7 @@ Frontend HTML/CSS/JavaScript com Vite; backend Node.js com Express; adaptador em
 
 O navegador enviará `pergunta` e `texto` ao backend, que validará a entrada, montará a orientação de estudo e chamará o Gemini. A resposta retornará como texto, sem execução de HTML. Não haverá banco, autenticação, upload de arquivos ou armazenamento permanente das conversas.
 
-Modelo inicial: `gemini-2.5-flash-lite`, configurável por ambiente, com chave apenas no backend. Antes da primeira chamada real, conferir disponibilidade do modelo e permanência do projeto no Free Tier. Não ativar faturamento nem fallback pago.
+Modelo atual: `gemini-3.5-flash-lite`, configurável por ambiente, com chave apenas no backend. Na etapa 2, em 01/11/2026, o modelo inicialmente previsto (`gemini-2.5-flash-lite`) retornou HTTP 404 na geração. O 3.5 Flash-Lite teve resposta real confirmada e consta com entrada e saída gratuitas no Free Tier na [tabela oficial](https://ai.google.dev/gemini-api/docs/pricing). A [documentação do modelo anterior](https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash-lite) informa restrições de acesso para projetos novos. A troca foi explícita na configuração; a aplicação não faz fallback automático. Não ativar faturamento nem recursos pagos.
 
 ## Comportamento previsto
 

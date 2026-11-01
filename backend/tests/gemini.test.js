@@ -25,7 +25,7 @@ describe('Serviço Gemini com fetch simulado', () => {
     const fetchImpl = vi.fn().mockResolvedValue(jsonResponse(success([{ text: ' Primeiro ' }, { text: 'segundo. ' }])));
     expect(await serviceFor(fetchImpl)(input)).toBe('Primeiro segundo.');
     const [url, options] = fetchImpl.mock.calls[0];
-    expect(url).toBe('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent');
+    expect(url).toBe('https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent');
     expect(url).not.toContain(TEST_KEY);
     expect(options.headers['x-goog-api-key']).toBe(TEST_KEY);
     expect(options.method).toBe('POST');

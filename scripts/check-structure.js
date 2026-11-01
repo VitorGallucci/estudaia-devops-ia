@@ -28,4 +28,4 @@ for (const workspace of manifest.workspaces) {
 
 const example = await readFile(new URL('.env.example', root), 'utf8');
 assert.match(example, /^GEMINI_API_KEY=$/m, 'O exemplo deve conter a chave vazia.');
-console.log('Estrutura da etapa 1 verificada. API, interface e testes ainda serão implementados.');
+console.log('Estrutura fundamental do projeto verificada. Consulte o README para o estado da implementação.');

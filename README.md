@@ -6,7 +6,7 @@ O objetivo é permitir que uma pessoa cole um texto, peça um resumo e faça per
 
 ## Estado atual
 
-**Etapa 1 de 6 — Fundação.** Estrutura e documentação inicial preparadas. A aplicação, os testes, o pipeline e o deploy serão implementados nas próximas etapas. Ainda não há URL de produção nem badge de sucesso.
+**Etapa 2 de 6 — Backend e Gemini concluída.** API local com saúde, perguntas, validação, integração real e tratamento de erros. Os 53 testes automatizados passaram, com 100% de cobertura da lógica do backend. Interface, pipeline e publicação serão implementados nas próximas etapas; ainda não há URL de produção nem badge de sucesso. Consulte as [evidências e instruções da etapa 2](docs/ETAPA_2.md).
 
 ## Tecnologias planejadas
 
@@ -19,7 +19,7 @@ O objetivo é permitir que uma pessoa cole um texto, peça um resumo e faça per
 ## Estrutura
 
 ```text
-backend/     API, validação e integração Gemini (etapa 2)
+backend/     API Express, serviço Gemini e testes
 frontend/    interface web (etapa 3)
 api/         adaptador da API para Vercel (etapa 5)
 docs/        planejamento e materiais da entrega
@@ -36,16 +36,46 @@ npm run check:structure
 
 Esses comandos instalam o projeto pelo lockfile e verificam os diretórios e arquivos fundamentais. A verificação de estrutura não substitui os futuros testes de comportamento nem mede cobertura.
 
-Na etapa de integração, copie `.env.example` para `.env` e preencha a chave localmente. O arquivo `.env` é ignorado pelo Git. Na produção, a chave será configurada no ambiente da Vercel. Nunca coloque chaves em variáveis com prefixo `VITE_`, pois elas podem ser incorporadas ao frontend.
+Copie `.env.example` para `.env` e preencha a chave localmente, caso ainda não tenha esse arquivo. Preserve um `.env` já configurado. O arquivo `.env` é ignorado pelo Git. Na produção, a chave será configurada no ambiente da Vercel. Nunca coloque chaves em variáveis com prefixo `VITE_`, pois elas podem ser incorporadas ao frontend.
 
-## Contrato previsto da API
+| Variável | Uso |
+| --- | --- |
+| `GEMINI_API_KEY` | Chave privada; necessária apenas para responder perguntas. |
+| `GEMINI_MODEL` | Modelo de texto; padrão `gemini-3.5-flash-lite`. |
+| `PORT` | Porta local do backend; padrão `3000`. |
+
+```powershell
+npm run dev:backend
+```
+
+O backend fica em `http://127.0.0.1:3000`. Abra `/saude` para consultar a saúde; `/perguntar` recebe somente POST. Este endereço é para desenvolvimento e não substitui a URL pública da entrega. Para iniciar sem reinício automático, use `npm run start:backend`.
+
+## Testes do backend
+
+```powershell
+npm run test:backend
+npm run test:coverage:backend
+```
+
+Os testes usam serviço injetado e `fetch` simulado, sem ler o `.env` ou consumir Gemini. O relatório HTML fica em `backend/coverage/index.html` (não versionado). A configuração exige pelo menos 70% em linhas, funções, instruções e ramificações. O módulo `server.js`, que apenas abre a porta, fica fora da cobertura; foi verificado separadamente com requisições HTTP reais. A cobertura do frontend será adicionada após sua implementação.
+
+## Contrato da API
 
 | Método e rota | Entrada | Saída de sucesso |
 | --- | --- | --- |
 | `GET /saude` | Nenhuma | `{ "status": "ok" }` |
 | `POST /perguntar` | `{ "pergunta": "Resuma em tópicos", "texto": "Texto de estudo" }` | `{ "resposta": "Resumo gerado" }` |
 
-`pergunta` será obrigatória, com até 1.000 caracteres; `texto` será opcional, com até 12.000 caracteres. O endpoint de saúde não consumirá IA.
+`pergunta` é obrigatória, com até 1.000 caracteres; `texto` é opcional, com até 12.000 caracteres. O endpoint de saúde não consome IA.
+
+Envie `Content-Type: application/json`. Respostas de erro seguem `{ "erro": { "codigo": "...", "mensagem": "..." } }`. Erros de validação retornam 400; formato incorreto, 415; corpo excessivo, 413; conteúdo bloqueado, 422; limite do provedor, 429; falha externa, 502; configuração/indisponibilidade, 503; timeout de 25 segundos, 504. Erros inesperados retornam 500 sem detalhes internos. Requisições têm limite de 100 KB e respostas não são armazenadas em cache.
+
+Exemplo no PowerShell, com o backend iniciado e a chave configurada:
+
+```powershell
+$dados = @{ pergunta = 'Explique o que é integração contínua em uma frase.' } | ConvertTo-Json
+Invoke-RestMethod -Uri 'http://127.0.0.1:3000/perguntar' -Method Post -ContentType 'application/json; charset=utf-8' -Body ([System.Text.Encoding]::UTF8.GetBytes($dados))
+```
 
 ## Segurança e custos
 

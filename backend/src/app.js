@@ -1,13 +1,10 @@
 import express from 'express';
 import { AppError } from './errors.js';
 import { validateQuestion } from './validation.js';
-
-async function unavailableService() {
-  throw new AppError(503, 'IA_NAO_CONFIGURADA', 'O serviço de IA ainda não está configurado.');
-}
+import { createGeminiService } from './gemini.js';
 
 // Separada do listen: Supertest e Vercel reutilizam a mesma aplicação.
-export function createApp({ answerQuestion = unavailableService } = {}) {
+export function createApp({ answerQuestion = createGeminiService() } = {}) {
   const app = express();
   app.disable('x-powered-by');
   app.use((_req, res, next) => {

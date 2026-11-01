@@ -1,7 +1,10 @@
 import request from 'supertest';
-import { describe, it, expect, vi } from 'vitest';
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
 import { createApp } from '../src/app.js';
 import { AppError } from '../src/errors.js';
+
+beforeEach(() => vi.stubEnv('GEMINI_API_KEY', ''));
+afterEach(() => vi.unstubAllEnvs());
 
 describe('API EstudaIA', () => {
   it('informa saúde sem consumir IA nem divulgar configuração', async () => {

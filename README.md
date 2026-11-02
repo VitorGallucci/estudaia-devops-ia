@@ -1,12 +1,14 @@
 # EstudaIA
 
+[![CI - testes e build](https://github.com/VitorGallucci/estudaia-devops-ia/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/VitorGallucci/estudaia-devops-ia/actions/workflows/ci.yml)
+
 Assistente de estudos com IA Generativa desenvolvido por Vitor Gallucci para a disciplina Desafio DevOps e IA da pós-graduação PUCPR.
 
 O objetivo é permitir que uma pessoa cole um texto, peça um resumo e faça perguntas sobre o conteúdo. Também será possível tirar dúvidas sem fornecer texto.
 
 ## Estado atual
 
-**Etapa 3 de 6 — Interface concluída.** Frontend responsivo conectado à API local, com resumo, perguntas, carregamento, erros, cópia e limpeza. O fluxo completo com Gemini real foi verificado no navegador. São 79 testes automatizados com cobertura acima de 70% em ambas as aplicações. Pipeline e publicação serão implementados nas próximas etapas; ainda não há URL de produção nem badge de sucesso. Consulte as [evidências do backend](docs/ETAPA_2.md) e da [interface](docs/ETAPA_3.md).
+**Etapa 4 de 6 — CI e badge concluídos.** O GitHub Actions executa os 79 testes com mock, exige cobertura mínima de 70% em cada aplicação, compila a interface e disponibiliza os relatórios para download. A primeira execução remota terminou com sucesso. Frontend e backend também foram verificados localmente com Gemini real. A publicação online será feita na etapa 5. Consulte as [evidências do backend](docs/ETAPA_2.md), da [interface](docs/ETAPA_3.md) e do [pipeline](docs/ETAPA_4.md).
 
 ## Tecnologias
 
@@ -77,6 +79,16 @@ npm run test:coverage
 
 Os comandos executam ambos os workspaces, com IA simulada. Relatórios HTML separados: `backend/coverage/index.html` e `frontend/coverage/index.html`. A configuração exige pelo menos 70% em cada uma das quatro métricas, separadamente por aplicação.
 
+## Pipeline no GitHub Actions
+
+O workflow [CI - testes e build](https://github.com/VitorGallucci/estudaia-devops-ia/actions/workflows/ci.yml), definido em `.github/workflows/ci.yml`, roda em pushes, pull requests para `main` e acionamento manual. Ele utiliza Ubuntu e Node.js 22, instala pelo lockfile, verifica a estrutura, executa testes com cobertura e gera o build. Se os testes ou os limites de cobertura falharem, o pipeline falha e a compilação seguinte é bloqueada.
+
+O badge no início deste README reflete o resultado real dos pushes na branch `main`: verde (`passing`) indica que a última execução terminou com sucesso. Clique nele para ver as execuções e seus logs. O badge não comprova disponibilidade da IA ou da aplicação em produção.
+
+Ao abrir uma execução, a seção **Artifacts** contém `cobertura-backend`, `cobertura-frontend` e `build-frontend`, com retenção de 14 dias. Extraia o ZIP de cobertura e abra `index.html` para navegar pelo relatório. O download pode exigir login no GitHub.
+
+O CI usa mocks, com `GEMINI_API_KEY` vazia, e não recebe a chave real. As actions oficiais estão fixadas por SHA e o token do workflow tem somente leitura do código. A parte de deploy contínuo (CD) será adicionada na etapa 5, dependente da aprovação deste job de qualidade.
+
 Na etapa 3: backend com 53 testes e 100% nas quatro métricas; frontend com 26 testes, 100% em linhas/funções, 96,82% em instruções e 90,47% em ramificações. O frontend usa testes DOM para validar o comportamento, além da inspeção no navegador em desktop e tela pequena.
 
 ## Testes do backend
@@ -118,6 +130,6 @@ Invoke-RestMethod -Uri 'http://127.0.0.1:3000/perguntar' -Method Post -ContentTy
 
 Prazo: **07/11/2026 às 23h59, horário de Brasília**. Consulte [planejamento](docs/PLANEJAMENTO.md) e [checklist de entrega](docs/ENTREGA.md).
 
-O badge será adicionado quando existir um workflow real. A cobertura mínima será de 70% em cada aplicação. O arquivo `DECISOES.md`, com no mínimo 200 palavras, será redigido a partir das decisões e dificuldades observadas e revisado pelo autor na etapa final.
+O badge está ligado ao workflow real do GitHub Actions e a cobertura mínima de 70% é exigida em cada aplicação. O arquivo `DECISOES.md`, com no mínimo 200 palavras, será redigido a partir das decisões e dificuldades observadas e revisado pelo autor na etapa final.
 
 IA é utilizada como assistente de desenvolvimento. O autor deverá compreender e explicar a implementação na demonstração individual.

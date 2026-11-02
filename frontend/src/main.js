@@ -1,3 +1,5 @@
 import './styles.css';
 
-// O comportamento do formulário será conectado na próxima funcionalidade.
+import { mountApp } from './app.js';
+
+mountApp(document);

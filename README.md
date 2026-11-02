@@ -6,9 +6,9 @@ O objetivo é permitir que uma pessoa cole um texto, peça um resumo e faça per
 
 ## Estado atual
 
-**Etapa 2 de 6 — Backend e Gemini concluída.** API local com saúde, perguntas, validação, integração real e tratamento de erros. Os 53 testes automatizados passaram, com 100% de cobertura da lógica do backend. Interface, pipeline e publicação serão implementados nas próximas etapas; ainda não há URL de produção nem badge de sucesso. Consulte as [evidências e instruções da etapa 2](docs/ETAPA_2.md).
+**Etapa 3 de 6 — Interface concluída.** Frontend responsivo conectado à API local, com resumo, perguntas, carregamento, erros, cópia e limpeza. O fluxo completo com Gemini real foi verificado no navegador. São 79 testes automatizados com cobertura acima de 70% em ambas as aplicações. Pipeline e publicação serão implementados nas próximas etapas; ainda não há URL de produção nem badge de sucesso. Consulte as [evidências do backend](docs/ETAPA_2.md) e da [interface](docs/ETAPA_3.md).
 
-## Tecnologias planejadas
+## Tecnologias
 
 - Frontend: HTML, CSS e JavaScript com Vite.
 - Backend: Node.js e Express, com acesso ao Gemini por `fetch`.
@@ -20,7 +20,7 @@ O objetivo é permitir que uma pessoa cole um texto, peça um resumo e faça per
 
 ```text
 backend/     API Express, serviço Gemini e testes
-frontend/    interface web (etapa 3)
+frontend/    interface HTML/CSS/JavaScript, Vite e testes DOM
 api/         adaptador da API para Vercel (etapa 5)
 docs/        planejamento e materiais da entrega
 ```
@@ -50,6 +50,35 @@ npm run dev:backend
 
 O backend fica em `http://127.0.0.1:3000`. Abra `/saude` para consultar a saúde; `/perguntar` recebe somente POST. Este endereço é para desenvolvimento e não substitui a URL pública da entrega. Para iniciar sem reinício automático, use `npm run start:backend`.
 
+Em outro terminal, na mesma pasta, inicie a interface:
+
+```powershell
+npm run dev:frontend
+```
+
+Abra `http://127.0.0.1:5173`. O Vite encaminha `/perguntar` e `/saude` para o backend em `127.0.0.1:3000`, mantendo a mesma origem no navegador. Caso use outra porta no backend, ajuste o destino no `frontend/vite.config.js`. Nenhuma chave vai para o navegador.
+
+Cole um texto e clique em **Resumir este texto** para preencher a pergunta; clique em **Enviar pergunta** para chamar a IA. Também é possível perguntar sem texto. **Copiar resposta** copia o texto recebido; **Limpar** apaga o formulário e a resposta. A aplicação não guarda histórico após recarregar a página.
+
+Para gerar os arquivos estáticos da interface:
+
+```powershell
+npm run build
+```
+
+O resultado fica em `frontend/dist`, ignorado pelo Git. O build não publica a aplicação nem inclui o backend; o adaptador e o deploy serão adicionados na etapa 5.
+
+## Testes de toda a aplicação
+
+```powershell
+npm test
+npm run test:coverage
+```
+
+Os comandos executam ambos os workspaces, com IA simulada. Relatórios HTML separados: `backend/coverage/index.html` e `frontend/coverage/index.html`. A configuração exige pelo menos 70% em cada uma das quatro métricas, separadamente por aplicação.
+
+Na etapa 3: backend com 53 testes e 100% nas quatro métricas; frontend com 26 testes, 100% em linhas/funções, 96,82% em instruções e 90,47% em ramificações. O frontend usa testes DOM para validar o comportamento, além da inspeção no navegador em desktop e tela pequena.
+
 ## Testes do backend
 
 ```powershell
@@ -57,7 +86,7 @@ npm run test:backend
 npm run test:coverage:backend
 ```
 
-Os testes usam serviço injetado e `fetch` simulado, sem ler o `.env` ou consumir Gemini. O relatório HTML fica em `backend/coverage/index.html` (não versionado). A configuração exige pelo menos 70% em linhas, funções, instruções e ramificações. O módulo `server.js`, que apenas abre a porta, fica fora da cobertura; foi verificado separadamente com requisições HTTP reais. A cobertura do frontend será adicionada após sua implementação.
+Os testes usam serviço injetado e `fetch` simulado, sem ler o `.env` ou consumir Gemini. O relatório HTML fica em `backend/coverage/index.html` (não versionado). A configuração exige pelo menos 70% em linhas, funções, instruções e ramificações. O módulo `server.js`, que apenas abre a porta, fica fora da cobertura; foi verificado separadamente com requisições HTTP reais. O bootstrap `frontend/src/main.js`, que apenas importa CSS e monta a interface, também fica fora da cobertura e foi verificado no navegador.
 
 ## Contrato da API
 

@@ -3,5 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Interface HTML, CSS e JavaScript do EstudaIA; implementação na etapa 3"
+  "description": "Interface web do assistente de estudos EstudaIA",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "5.0.5",
+    "jsdom": "29.1.1",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
 }

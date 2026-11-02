@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Transforme textos em resumos e esclareça suas dúvidas com o EstudaIA, seu assistente de estudos." />
+    <meta name="theme-color" content="#254ad8" />
+    <title>EstudaIA — seu espaço de estudo</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#estudo">Ir para o formulário</a>
+    <header class="site-header shell">
+      <a class="brand" href="/" aria-label="EstudaIA, início"><span class="brand-mark" aria-hidden="true">E<span>✦</span></span>Estuda<span class="brand-ia">IA</span></a>
+      <span class="header-note"><span class="dot" aria-hidden="true"></span> Seu espaço de estudo</span>
+    </header>
+    <main class="shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">UM POUCO DE IA. MAIS CLAREZA.</p>
+        <h1 id="page-title">Menos texto.<br /><span>Mais entendimento.</span></h1>
+        <p class="intro-copy">Transforme suas anotações em resumos ou tire aquela dúvida.<br class="desktop-break" /> Você traz a curiosidade. A gente ajuda a organizar as ideias.</p>
+      </section>
+      <div class="workspace">
+        <section class="panel input-panel" aria-labelledby="input-title">
+          <div class="panel-heading"><h2 id="input-title">Vamos estudar?</h2><span class="small-tag">DO SEU JEITO</span></div>
+          <form id="estudo">
+            <div class="field-heading"><label for="texto"><span class="step">01</span> Seu material</label><span class="optional">Opcional</span></div>
+            <p class="field-hint" id="texto-ajuda">Cole o texto que você quer entender melhor.</p>
+            <textarea id="texto" name="texto" maxlength="12000" rows="7" placeholder="Suas anotações, um trecho da aula, aquele conceito complicado…" aria-describedby="texto-ajuda texto-contador"></textarea>
+            <div class="below-field"><button type="button" id="resumir" class="shortcut">✦ Resumir este texto</button><span id="texto-contador" class="counter">0 / 12.000</span></div>
+            <div class="question-field">
+              <div class="field-heading"><label for="pergunta"><span class="step">02</span> Sua pergunta</label><span class="optional">Obrigatória</span></div>
+              <p class="field-hint" id="pergunta-ajuda">Pergunte sobre o material ou explore uma dúvida de estudo.</p>
+              <textarea id="pergunta" name="pergunta" required maxlength="1000" rows="3" placeholder="O que você gostaria de aprender?" aria-describedby="pergunta-ajuda pergunta-contador"></textarea>
+              <div class="question-bottom"><span class="hint-label">Experimente:</span><button type="button" class="example" data-question="Qual é a diferença entre integração contínua e entrega contínua?">CI × CD</button><button type="button" class="example" data-question="Explique o que é DevOps com um exemplo simples.">O que é DevOps?</button><span id="pergunta-contador" class="counter">0 / 1.000</span></div>
+            </div>
+            <div class="form-actions"><button type="submit" id="enviar" class="primary">Enviar pergunta <span aria-hidden="true">↗</span></button><button type="button" id="limpar" class="quiet">Limpar</button></div>
+          </form>
+        </section>
+        <section class="panel output-panel" aria-labelledby="output-title" aria-busy="false">
+          <div class="panel-heading"><h2 id="output-title">Uma ideia mais clara</h2><button type="button" id="copiar" class="copy-button" disabled>Copiar resposta</button></div>
+          <div id="empty-state" class="empty-state"><div class="paper-icon" aria-hidden="true"><span>✦</span><i></i><i></i><i></i></div><h3>O próximo entendimento<br />começa com uma pergunta.</h3><p>Sua resposta aparece aqui.<br />Cole um texto ou envie uma dúvida para começar.</p><span class="empty-caption">UM PASSO DE CADA VEZ.</span></div>
+          <div id="loading-state" class="loading-state" hidden><span class="spinner" aria-hidden="true"></span><p>Organizando as ideias…</p><span>A resposta pode levar alguns segundos.</span></div>
+          <div id="answer-wrapper" class="answer-wrapper" hidden><p class="answer-label">PARA CONTINUAR SEUS ESTUDOS</p><div id="resposta" class="answer-text" tabindex="-1"></div></div>
+          <p id="erro" class="error-message" role="alert" hidden></p>
+          <p id="status" class="status-message" role="status" aria-live="polite"></p>
+          <div class="review-note"><span aria-hidden="true">✧</span><p>Use como ponto de partida. Revise as respostas e compare com seu material de estudo.</p></div>
+        </section>
+      </div>
+      <footer class="site-footer"><p>Feito para aprender, uma pergunta por vez.</p><p>Evite inserir dados pessoais ou confidenciais. Textos enviados são processados pelo Gemini.</p></footer>
+    </main>
+    <noscript>Ative o JavaScript para enviar perguntas ao assistente de estudos.</noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

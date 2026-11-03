@@ -1,0 +1,7 @@
+# Segredos locais nunca fazem parte de uploads pela CLI.
+.env
+.env.*
+!.env.example
+**/coverage/
+**/tests/
+**/*.log

@@ -10,7 +10,16 @@ O objetivo é permitir que uma pessoa cole um texto, peça um resumo e faça per
 
 ## Estado atual
 
-**Etapa 5 de 6 — Publicação na Vercel.** Frontend e API estão disponíveis na mesma URL pública, com duas perguntas reais verificadas no navegador. O projeto está no plano Hobby, com chave Gemini restrita à produção. O GitHub Actions executa 81 testes com mock, exige cobertura mínima de 70% em cada aplicação e compila a interface. A Vercel exige a aprovação do job de qualidade antes de promover novas versões para produção. Consulte as [evidências do backend](docs/ETAPA_2.md), da [interface](docs/ETAPA_3.md), do [pipeline](docs/ETAPA_4.md) e da [publicação](docs/ETAPA_5.md).
+**Etapa 6 de 6 — Materiais de apresentação preparados.** Aplicação publicada, 81 testes com mock, cobertura acima de 70% por aplicação, CI aprovado e publicação na Vercel condicionada ao check de qualidade. `DECISOES.md`, roteiro, guia de estudo e checklist estão disponíveis. A revisão pessoal das decisões, a gravação/publicação do vídeo e o envio ao portal ainda dependem do autor. Consulte as [evidências do backend](docs/ETAPA_2.md), da [interface](docs/ETAPA_3.md), do [pipeline](docs/ETAPA_4.md) e da [publicação](docs/ETAPA_5.md).
+
+## Apresentação e entrega
+
+- [Roteiro completo do vídeo, com falas e links](docs/ROTEIRO_VIDEO.md): meta de 7 minutos e 40 segundos.
+- [Guia para entender e explicar o projeto](docs/GUIA_DE_ESTUDO.md).
+- [Decisões em primeira pessoa](DECISOES.md): 476 palavras, para revisão pessoal do autor.
+- [Checklist da submissão](docs/ENTREGA.md) e [texto pronto para preencher com o link do vídeo](docs/TEXTO_SUBMISSAO.md).
+
+**Vídeo:** ainda não gravado/publicado. A entrega só estará completa após incluir o link acessível e enviar a submissão única ao portal PUCPR até **07/11/2026 às 23h59, horário de Brasília**.
 
 ## Tecnologias
 
@@ -140,6 +149,6 @@ Invoke-RestMethod -Uri 'http://127.0.0.1:3000/perguntar' -Method Post -ContentTy
 
 Prazo: **07/11/2026 às 23h59, horário de Brasília**. Consulte [planejamento](docs/PLANEJAMENTO.md) e [checklist de entrega](docs/ENTREGA.md).
 
-O badge está ligado ao workflow real do GitHub Actions e a cobertura mínima de 70% é exigida em cada aplicação. O arquivo `DECISOES.md`, com no mínimo 200 palavras, será redigido a partir das decisões e dificuldades observadas e revisado pelo autor na etapa final.
+O badge está ligado ao workflow real do GitHub Actions e a cobertura mínima de 70% é exigida em cada aplicação. O arquivo [DECISOES.md](DECISOES.md) contém 476 palavras em primeira pessoa, com escolhas e dificuldades técnicas observadas. O autor deve revisá-lo para garantir que as reflexões representem seu entendimento antes da submissão.
 
 IA é utilizada como assistente de desenvolvimento. O autor deverá compreender e explicar a implementação na demonstração individual.

@@ -49,6 +49,12 @@ Essa configuração de checks pertence ao projeto na Vercel e não é definida n
 
 Os testes automatizados continuam com IA simulada. As duas perguntas de produção utilizaram o provedor real e sua cota.
 
+## Evidência da atualização automática
+
+Após a primeira publicação, o commit `4e8c907c94bf54cb2ce1413d1f3dfcb9d2484498` foi enviado normalmente para `main`, sem acionar manualmente um deploy. A integração Git da Vercel criou o deployment `dpl_B18fDLstfxxwkE1Y2YdWWDmop6Sj`, cuja origem foi identificada como `git` e cujo SHA correspondeu ao commit enviado.
+
+O [GitHub Actions desse commit](https://github.com/VitorGallucci/estudaia-devops-ia/actions/runs/41734610706) concluiu o job **Testes, cobertura e build** com sucesso. A consulta ao alias `estudaia-devops-ia.vercel.app` confirmou que o domínio público passou a apontar para esse novo deployment automaticamente. Isso verificou o caminho de atualização por push, além da publicação inicial pela integração.
+
 ## Como revisar e apresentar
 
 Abra a URL pública, cole um pequeno texto e use **Resumir este texto**; envie e mostre a resposta. Em seguida, use **Limpar** e faça uma pergunta sem texto. Mostre também `/saude`, o histórico de commits e o workflow aprovado no GitHub.

@@ -5,7 +5,7 @@ Prazo: **07/11/2026, 23h59 — horário de Brasília**.
 ## Links
 
 - Repositório público: [VitorGallucci/estudaia-devops-ia](https://github.com/VitorGallucci/estudaia-devops-ia).
-- Aplicação em produção: pendente da etapa 5.
+- Aplicação em produção: [EstudaIA](https://estudaia-devops-ia.vercel.app).
 - Vídeo de demonstração: pendente da gravação pelo autor.
 
 ## Requisitos da atividade
@@ -16,7 +16,7 @@ Prazo: **07/11/2026, 23h59 — horário de Brasília**.
 - [x] Interface local conectada à API com respostas reais do Gemini (etapa 3).
 - [x] Cobertura mínima de 70% em backend e frontend, com IA simulada nos testes (etapa 3).
 - [x] GitHub Actions aprovado e badge real no README (etapa 4; conferir novamente antes do envio).
-- [ ] URL pública da Vercel acessível sem autenticação.
+- [x] URL pública da Vercel acessível sem autenticação, com duas respostas reais verificadas (etapa 5).
 - [ ] Ausência de segredos nos arquivos e no histórico.
 - [ ] `DECISOES.md` com pelo menos 200 palavras, revisado pelo autor.
 - [ ] Roteiro e guia de estudo preparados.
@@ -25,6 +25,6 @@ Prazo: **07/11/2026, 23h59 — horário de Brasília**.
 - [ ] Links verificados em janela sem autenticação.
 - [ ] Submissão única enviada no portal PUCPR.
 
-## Revisão da etapa 4
+## Revisão da etapa 5
 
-Conferir o badge no README e as [evidências do pipeline](ETAPA_4.md). A execução remota aprovou os 79 testes, a cobertura e o build; os relatórios estão disponíveis como artefatos no Actions. A publicação em produção continua pendente. A etapa 5 começará após a revisão do autor.
+Abrir a URL pública, realizar perguntas e conferir as [evidências de produção](ETAPA_5.md). A Vercel exige o check do GitHub Actions para promover novas versões. São 81 testes com mock e cobertura superior a 70% em ambos os componentes. A etapa 6 preparará as decisões, o roteiro e os materiais finais após a revisão do autor.

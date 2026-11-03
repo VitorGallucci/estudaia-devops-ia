@@ -6,9 +6,11 @@ Assistente de estudos com IA Generativa desenvolvido por Vitor Gallucci para a d
 
 O objetivo é permitir que uma pessoa cole um texto, peça um resumo e faça perguntas sobre o conteúdo. Também será possível tirar dúvidas sem fornecer texto.
 
+**Aplicação publicada:** [estudaia-devops-ia.vercel.app](https://estudaia-devops-ia.vercel.app) · [Saúde da API](https://estudaia-devops-ia.vercel.app/saude)
+
 ## Estado atual
 
-**Etapa 4 de 6 — CI e badge concluídos.** O GitHub Actions executa os 79 testes com mock, exige cobertura mínima de 70% em cada aplicação, compila a interface e disponibiliza os relatórios para download. A primeira execução remota terminou com sucesso. Frontend e backend também foram verificados localmente com Gemini real. A publicação online será feita na etapa 5. Consulte as [evidências do backend](docs/ETAPA_2.md), da [interface](docs/ETAPA_3.md) e do [pipeline](docs/ETAPA_4.md).
+**Etapa 5 de 6 — Publicação na Vercel.** Frontend e API estão disponíveis na mesma URL pública, com duas perguntas reais verificadas no navegador. O projeto está no plano Hobby, com chave Gemini restrita à produção. O GitHub Actions executa 81 testes com mock, exige cobertura mínima de 70% em cada aplicação e compila a interface. A Vercel exige a aprovação do job de qualidade antes de promover novas versões para produção. Consulte as [evidências do backend](docs/ETAPA_2.md), da [interface](docs/ETAPA_3.md), do [pipeline](docs/ETAPA_4.md) e da [publicação](docs/ETAPA_5.md).
 
 ## Tecnologias
 
@@ -23,7 +25,7 @@ O objetivo é permitir que uma pessoa cole um texto, peça um resumo e faça per
 ```text
 backend/     API Express, serviço Gemini e testes
 frontend/    interface HTML/CSS/JavaScript, Vite e testes DOM
-api/         adaptador da API para Vercel (etapa 5)
+api/         adaptador que exporta a aplicação Express para a Vercel
 docs/        planejamento e materiais da entrega
 ```
 
@@ -68,7 +70,7 @@ Para gerar os arquivos estáticos da interface:
 npm run build
 ```
 
-O resultado fica em `frontend/dist`, ignorado pelo Git. O build não publica a aplicação nem inclui o backend; o adaptador e o deploy serão adicionados na etapa 5.
+O resultado fica em `frontend/dist`, ignorado pelo Git. Na Vercel, `vercel.json` combina esses arquivos estáticos com a função `api/index.js`, que exporta a mesma aplicação Express do backend. As rotas `/saude` e `/perguntar` são encaminhadas a essa função.
 
 ## Testes de toda a aplicação
 
@@ -87,9 +89,17 @@ O badge no início deste README reflete o resultado real dos pushes na branch `m
 
 Ao abrir uma execução, a seção **Artifacts** contém `cobertura-backend`, `cobertura-frontend` e `build-frontend`, com retenção de 14 dias. Extraia o ZIP de cobertura e abra `index.html` para navegar pelo relatório. O download pode exigir login no GitHub.
 
-O CI usa mocks, com `GEMINI_API_KEY` vazia, e não recebe a chave real. As actions oficiais estão fixadas por SHA e o token do workflow tem somente leitura do código. A parte de deploy contínuo (CD) será adicionada na etapa 5, dependente da aprovação deste job de qualidade.
+O CI usa mocks, com `GEMINI_API_KEY` vazia, e não recebe a chave real. As actions oficiais estão fixadas por SHA e o token do workflow tem somente leitura do código.
 
-Na etapa 3: backend com 53 testes e 100% nas quatro métricas; frontend com 26 testes, 100% em linhas/funções, 96,82% em instruções e 90,47% em ramificações. O frontend usa testes DOM para validar o comportamento, além da inspeção no navegador em desktop e tela pequena.
+Na etapa 5: backend com 55 testes e 100% nas quatro métricas; frontend com 26 testes, 100% em linhas/funções, 96,82% em instruções e 90,47% em ramificações. O frontend usa testes DOM para validar o comportamento, além da inspeção no navegador em desktop e tela pequena.
+
+## Publicação contínua
+
+A Vercel está conectada à branch `main` deste repositório. Ao receber um push, prepara uma versão e consulta o check **Testes, cobertura e build** do GitHub Actions para o mesmo commit. A configuração **Deployment Checks** exige esse check na produção; a versão só recebe o domínio público após a aprovação. Um teste ou uma cobertura reprovada impede a promoção daquela versão.
+
+Essa configuração usa a integração Git nativa com a Vercel, conforme a [documentação de Deployment Checks](https://vercel.com/docs/deployment-checks). O GitHub Actions executa a qualidade; a Vercel constrói e publica após sua aprovação. Não há token pessoal de deploy armazenado no GitHub. O build da Vercel pode ocorrer enquanto os testes rodam; a barreira controla a publicação no domínio de produção.
+
+O projeto usa Node.js 22, raiz do repositório, comando `npm run build`, saída `frontend/dist` e a função `api/index.js`. Na Vercel, configure `GEMINI_API_KEY` como segredo de Production e `GEMINI_MODEL=gemini-3.5-flash-lite`. A função tem limite de 60 segundos e a chamada ao Gemini mantém seu timeout de 25 segundos. Os detalhes para reproduzir a configuração e revisar a publicação estão na [etapa 5](docs/ETAPA_5.md).
 
 ## Testes do backend
 

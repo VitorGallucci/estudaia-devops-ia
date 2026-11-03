@@ -41,7 +41,7 @@ Ao concluir cada etapa, informar mudanças, verificações e commits ao autor e 
 - Simular Gemini: sucesso com e sem texto, quota esgotada, timeout, indisponibilidade, resposta vazia e bloqueada.
 - Verificar validação, formulário, atalho de resumo, envio duplicado, estados de carregamento e erro.
 - GitHub Actions em push e pull request: `npm ci`, testes com cobertura e build; publicar relatório HTML como artefato.
-- Deploy apenas em `main` após aprovação das verificações, com segredos restritos ao job de deploy. Impedir deploy paralelo automático que contorne o CI.
+- Produção vinculada a `main`, com promoção bloqueada por Deployment Checks até a aprovação do job `Testes, cobertura e build` do GitHub Actions no mesmo commit. Os segredos ficam restritos à produção da Vercel. A etapa 5 adotou essa integração Git nativa, recomendada na documentação oficial, em lugar de um job de CLI com token pessoal.
 - Produção: URL sem login, saúde, resumo e pergunta reais; conferir SHA publicado e badge.
 
 ## Entrega e responsabilidades

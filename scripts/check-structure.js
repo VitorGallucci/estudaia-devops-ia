@@ -7,8 +7,7 @@ const files = [
   '.env.example',
   '.gitignore',
   'package-lock.json',
-  'docs/PLANEJAMENTO.md',
-  'docs/ENTREGA.md',
+  'DECISOES.md',
   'api/README.md',
 ];
 
@@ -28,4 +27,4 @@ for (const workspace of manifest.workspaces) {
 
 const example = await readFile(new URL('.env.example', root), 'utf8');
 assert.match(example, /^GEMINI_API_KEY=$/m, 'O exemplo deve conter a chave vazia.');
-console.log('Estrutura fundamental do projeto verificada. Consulte o README para o estado da implementação.');
+console.log('Estrutura fundamental do projeto verificada.');

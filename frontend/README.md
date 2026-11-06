@@ -30,5 +30,3 @@ npm run build
 Os testes Vitest em jsdom usam o mesmo HTML da aplicação e simulam o serviço ou `fetch`, sem consumir IA. O relatório fica em `frontend/coverage/index.html`; o build fica em `frontend/dist`. A cobertura exclui somente o bootstrap `main.js`, verificado no navegador. O mínimo é 70% em cada métrica.
 
 A cópia depende da API de clipboard do navegador, normalmente disponível em HTTPS e localhost. Caso o navegador a bloqueie, a interface orienta a cópia manual. As fontes são carregadas do Google Fonts com fallback para fontes locais.
-
-Veja as [evidências da etapa 3](../docs/ETAPA_3.md). O build da interface isolado não substitui a futura publicação conjunta do frontend e da API.

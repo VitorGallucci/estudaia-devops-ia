@@ -28,4 +28,4 @@ npm run test:coverage:backend
 
 Supertest verifica as rotas HTTP; Vitest simula o serviço e o `fetch`. Os testes do timeout usam relógio simulado, sem aguardar 25 segundos reais. O relatório HTML é gerado em `backend/coverage/index.html`.
 
-A cobertura inclui toda a lógica em `src`, exceto `server.js`, cujo início e encerramento foram verificados separadamente. Configuração do teste, dependências e arquivos de teste não entram na cobertura. Mais detalhes em [Etapa 2](../docs/ETAPA_2.md).
+A cobertura inclui toda a lógica em `src`, exceto `server.js`, cujo início e encerramento foram verificados separadamente. Configuração do teste, dependências e arquivos de teste não entram na cobertura.
